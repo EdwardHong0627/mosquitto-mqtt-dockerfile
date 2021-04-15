@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-MAINTAINER Thomas Kerpe <toke@toke.de>
+MAINTAINER Edward Hong <edwardhung@iii.org.tw>
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -25,9 +25,8 @@ RUN mkdir -p /mqtt/config /mqtt/data /mqtt/log
 COPY config /mqtt/config
 RUN chown -R mosquitto:mosquitto /mqtt
 VOLUME ["/mqtt/config", "/mqtt/data", "/mqtt/log"]
-
-
-EXPOSE 1883 9001
+RUN mosquitto_passwd -c /mqtt/config/certs/iii.pwd username ${USERNAME} password ${PASSWORD}
+EXPOSE 1887 8087
 
 ADD docker-entrypoint.sh /usr/bin/
 
