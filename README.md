@@ -15,9 +15,10 @@ This container still uses Debian/Jessie as a base container which is kinda old.
 
 ## Build
 
-	docker build . --build-arg USER=iii -t "edward/mosquitto"
+	docker build . --build-arg USER=iii -t --build-arg PASSWORD=yourpassword "iii/mosquitto"
 
-
+## Run 
+	docker run -p 1887:1887/tcp -p 8087:8087/tcp --name yourname -v C:\\mosquitto\\data:/mosquitto/data -v C:\\mosquitto\\log:/mosquitto/log -d iii/mosquitto
 ## Contact
 
 Contact: Thomas Kerpe [toke@toke.de](mailto:toke@toke.de)
